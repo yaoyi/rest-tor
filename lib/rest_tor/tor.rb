@@ -18,7 +18,7 @@ module Tor extend self
   end
 
   def store
-    @store ||= Redis::HashKey.new('tor', marshal: true).tap { |s| s.send(:extend, Builder) }
+    @store ||= ::Redis::HashKey.new('tor', marshal: true).tap { |s| s.send(:extend, Builder) }
   end
 
   def hold_tor(mode: :default, rest: false, &block)
@@ -108,7 +108,7 @@ module Tor extend self
     end
     FileUtils.rm_rf dir(port)
   rescue Exception
-    
+
   ensure
     store.delete(port)
   end
