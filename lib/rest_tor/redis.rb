@@ -4,7 +4,7 @@ module Tor
     attr_reader :redis
 
     def current
-      @redis ||= Redis::Objects.redis
+      @redis ||= ::Redis::Objects.redis
     end
   end
 end
