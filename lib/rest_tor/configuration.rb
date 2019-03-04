@@ -9,7 +9,7 @@ module Tor
         ipParser: ->(body) { body[/\d{,3}\.\d{,3}\.\d{,3}\.\d{,3}/] },
         command: -> (port) { "tor --RunAsDaemon 1 --CookieAuthentication 0 --HashedControlPassword \"\"  --ControlPort auto --PidFile #{Tor.dir(port)}/tor.pid --SocksPort #{port} --DataDirectory #{Tor.dir(port)}  --CircuitBuildTimeout 5 --KeepalivePeriod 60 --NewCircuitPeriod 15 --NumEntryGuards 8 --quiet" }
       }
-      Redis::Objects.redis = Redis.new(host: "localhost")
+      ::Redis::Objects.redis = Redis.new(host: "localhost")
     end
 
     def method_missing(method_id, *args, &block)
